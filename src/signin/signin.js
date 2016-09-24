@@ -6,17 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Button from '../common/button';
-import Firebase from 'firebase';
-
-var config = {
-    apiKey: 'AIzaSyBwgzgXtuLnWWcx7AMq808Q67Kdnr0WS_Q',
-    authDomain: 'todo-56000.firebaseapp.com',
-    databaseURL: 'https://todo-56000.firebaseio.com',
-    storageBucket: 'todo-56000.appspot.com',
-    messagingSenderId: "1048964196750"
-  };
-
-var app = Firebase.initializeApp(config);
+import app from '../common/firebaseimp';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -39,12 +29,23 @@ module.exports = React.createClass({
         secureTextEntry={true}
         style={styles.textinput}
         onChangeText={(text) => this.setState({password: text})}/>
+      <Text>{this.state.errorMessage}</Text>
       <Button text='Sign in' onPress={this.signinPressed}/>
       <Button text='Sign up' onPress={this.signupPressed}/>
     </View>
   },
   signinPressed(){
-    this.props.navigator.immediatelyResetRouteStack([{name: 'todolist'}]);
+    app.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then(
+      (result) => {
+        var user = result.user;
+        this.props.navigator.immediatelyResetRouteStack([{name: 'todolist'}]);
+      }, 
+      (error) => {
+        this.setState({
+          errorMessage: error.message,
+        })
+      }
+    );
   },
   signupPressed(){
     this.props.navigator.push({name: 'signup'});
