@@ -10,10 +10,14 @@ module.exports = React.createClass({
   render(){
     return <View style={styles.container}>
       <Text>This is a detail view for item</Text>
-      <Button text='return' onPress={this.onReturnPress}/>
+      <Button text='return' onPress={this.onReturnPress} />
+      <Button text='delete' onPress={this.onDeletePress} />
     </View>
   },
   onReturnPress(){
+    this.props.navigator.pop();
+  },
+  onDeletePress(){
     this.props.navigator.pop();
   }
 });

@@ -19,11 +19,11 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    height: 30,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     borderWidth: 1,
     borderColor: 'gray',
+    padding: 5,
   },
   text: {
     fontSize: 30,

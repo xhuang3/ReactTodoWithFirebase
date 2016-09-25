@@ -18,11 +18,14 @@ module.exports = React.createClass({
   render(){
     return <View style={styles.container}>
       <ListView
-        style={styles.listview}
+        style={[styles.listview, this.border('green')]}
         dataSource={this.state.dataSource}
         renderRow={(rowData) => <TodoItem text={rowData} onPress={this.onItemPress}/>}
       />
-      <Button text='signout' onPress={this.onSignoutPress} />
+      <View style={[styles.footer, this.border('red')]}>
+        <Button text='signout' onPress={this.onSignoutPress} />
+        <Button text='add' onPress={this.onAddPress} />
+      </View>
     </View>
   },
   onItemPress(){
@@ -30,6 +33,15 @@ module.exports = React.createClass({
   },
   onSignoutPress(){
     this.props.navigator.immediatelyResetRouteStack([{name: 'signin'}]);
+  },
+  onAddPress(){
+    this.props.navigator.push({name: 'todoitemdetail'});
+  },
+  border(color){
+    return {
+      borderColor: color,
+      borderWidth: 6,
+    }
   }
 });
 
@@ -38,9 +50,15 @@ var styles = StyleSheet.create({
     marginTop: 30,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
+  },
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingBottom: 10,
+    paddingLeft: 10,
   },
   listview: {
-    
+    flex: 12,
   }
 })
