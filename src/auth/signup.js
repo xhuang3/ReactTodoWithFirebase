@@ -50,7 +50,7 @@ module.exports = React.createClass({
     app.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
       (result) => {
         var user = result.user;
-        this.props.navigator.immediatelyResetRouteStack([{name: 'todolist'}]);
+        this.props.navigator.immediatelyResetRouteStack([{name: 'itemlist'}]);
       },
       (error) => {
         this.setState({

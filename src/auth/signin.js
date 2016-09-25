@@ -10,6 +10,7 @@ import {
 } from '../common/firebaseapp';
 import Container from '../common/container';
 import TextInput from '../common/textinput';
+import Label from '../common/label';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -21,9 +22,7 @@ module.exports = React.createClass({
   },
   render(){
     return <Container>
-      <Text>
-        TODO
-      </Text>
+      <Label text='TODO'/>
       <TextInput
         placeholder={'email'}
         onChangeText={(text) => this.setState({username: text})}/>
@@ -40,7 +39,7 @@ module.exports = React.createClass({
     app.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then(
       (result) => {
         var user = result.user;
-        this.props.navigator.immediatelyResetRouteStack([{name: 'todolist'}]);
+        this.props.navigator.immediatelyResetRouteStack([{name: 'itemlist'}]);
       },
       (error) => {
         this.setState({

@@ -1,19 +1,31 @@
 import React, {Component} from 'react';
 import {
   View,
-  Text,
-  TextInput,
   StyleSheet
 } from 'react-native';
 import Container from '../common/container';
+import Label from '../common/label';
+import TextInput from '../common/textinput';
 
 module.exports = React.createClass({
   render(){
     return <Container>
-      <Text>Name</Text>
-      <Text>Detail description</Text>
+      <Label text='Add new item'/>
+      <TextInput
+        placeholder={'title'}
+      />
+      <TextInput
+        placeholder={'description'}
+      />
       <Button text='add' onPress={this.onAddPress} />
+      <Button text='cancel' onPress={this.onCancelPress} />
     </Container>
+  },
+  onAddPress(){
+
+  },
+  onCancelPress(){
+    this.props.navigator.pop();
   }
 });
 

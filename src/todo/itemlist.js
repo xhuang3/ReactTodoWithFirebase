@@ -30,13 +30,13 @@ module.exports = React.createClass({
     </Container>
   },
   onItemPress(){
-    this.props.navigator.push({name: 'todoitemdetail'});
+    this.props.navigator.push({name: 'itemdetail'});
   },
   onSignoutPress(){
     this.props.navigator.immediatelyResetRouteStack([{name: 'signin'}]);
   },
   onAddPress(){
-    this.props.navigator.push({name: 'todoitemdetail'});
+    this.props.navigator.push({name: 'itemupdate'});
   },
   border(color){
     return {

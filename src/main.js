@@ -5,14 +5,15 @@ import {
 } from 'react-native';
 import Signin from './auth/signin';
 import Signup from './auth/signup';
-import TodoList from './todo/itemlist';
-import TodoItemDetail from './todo/itemdetail';
-
+import ItemList from './todo/itemlist';
+import ItemDetail from './todo/itemdetail';
+import ItemUpdate from './todo/itemupdate';
 const ROUTES = {
   signin: Signin,
   signup: Signup,
-  todolist: TodoList,
-  todoitemdetail: TodoItemDetail,
+  itemlist: ItemList,
+  itemdetail: ItemDetail,
+  itemupdate: ItemUpdate,
 };
 
 module.exports = React.createClass({
