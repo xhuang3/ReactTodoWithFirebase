@@ -3,6 +3,7 @@ import {
   Navigator,
   StyleSheet
 } from 'react-native';
+import {app} from './common/firebaseapp';
 import Signin from './auth/signin';
 import Signup from './auth/signup';
 import ItemList from './todo/itemlist';
@@ -22,10 +23,10 @@ module.exports = React.createClass({
     return <Component route={route} navigator={navigator} />;
   },
   render(){
-    //TODO: Check if auth? Then choose route
+    var user = app.auth().currentUser;
     return <Navigator
              style={styles.container}
-             initialRoute={{name: 'signin'}}
+             initialRoute={{ name: (user ? 'itemlist' : 'signin') }}
              renderScene={this.renderScene}
              configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }} />
   }

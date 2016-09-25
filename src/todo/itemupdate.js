@@ -6,6 +6,7 @@ import {
 import Container from '../common/container';
 import Label from '../common/label';
 import TextInput from '../common/textinput';
+import {database} from '../common/firebaseapp';
 
 module.exports = React.createClass({
   render(){

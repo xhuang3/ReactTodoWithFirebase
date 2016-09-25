@@ -8,12 +8,13 @@ import {
 import Button from '../common/button';
 import TodoItem from '../common/todoitem';
 import Container from '../common/container';
+import {app} from '../common/firebaseapp';
 
 module.exports = React.createClass({
   componentWillMount(){
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState({
-      dataSource: ds.cloneWithRows(['row 1', 'row2']),
+      dataSource: ds.cloneWithRows(['row 1', 'row2', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3']),
     });
   },
   render(){
@@ -33,7 +34,14 @@ module.exports = React.createClass({
     this.props.navigator.push({name: 'itemdetail'});
   },
   onSignoutPress(){
-    this.props.navigator.immediatelyResetRouteStack([{name: 'signin'}]);
+    app.auth().signOut().then(
+      () => {
+        this.props.navigator.immediatelyResetRouteStack([{name: 'signin'}]);
+      },
+      (error) => {
+        console.log('Unable sign out');
+      }
+    )
   },
   onAddPress(){
     this.props.navigator.push({name: 'itemupdate'});
@@ -52,8 +60,10 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     paddingBottom: 10,
     paddingLeft: 10,
+    alignSelf: 'stretch'
   },
   listview: {
     flex: 12,
+    alignSelf: 'stretch'
   }
 })

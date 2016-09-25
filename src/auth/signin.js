@@ -36,6 +36,12 @@ module.exports = React.createClass({
     </Container>
   },
   signinPressed(){
+    var user = app.auth().currentUser;
+    if(user)
+    {
+      this.props.navigator.immediatelyResetRouteStack([{name: 'itemlist'}]);
+    }
+    
     app.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then(
       (result) => {
         var user = result.user;
