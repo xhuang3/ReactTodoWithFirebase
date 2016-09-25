@@ -6,7 +6,7 @@ import {
   ListView
 } from 'react-native';
 import Button from '../common/button';
-import TodoItem from './todoitem';
+import TodoItem from '../common/todoitem';
 
 module.exports = React.createClass({
   componentWillMount(){
