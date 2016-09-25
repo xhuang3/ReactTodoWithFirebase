@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 
 import Button from '../common/button';
-import app from '../common/firebaseimp';
+import app from '../common/firebaseapp';
+import Container from '../common/container';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -19,7 +20,7 @@ module.exports = React.createClass({
     })
   },
   render() {
-    return <View style={styles.container}>
+    return <Container>
       <Text>Sign Up</Text>
       <TextInput
         value={this.state.email}
@@ -36,7 +37,7 @@ module.exports = React.createClass({
       <Text>{this.state.errorMessage}</Text>
       <Button text='Sign up' onPress={this.onSignupPress} />
       <Button text='Return to sign in' onPress={this.onSigninPress} />
-    </View>
+    </Container>
   },
   onSignupPress(){
     if(this.state.password !== this.state.confirmPassword){
@@ -64,11 +65,6 @@ module.exports = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   input: {
     height: 40,
     width: 200,

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Button from '../common/button';
 import TodoItem from '../common/todoitem';
+import Container from '../common/container';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -16,7 +17,7 @@ module.exports = React.createClass({
     });
   },
   render(){
-    return <View style={styles.container}>
+    return <Container>
       <ListView
         style={[styles.listview, this.border('green')]}
         dataSource={this.state.dataSource}
@@ -26,7 +27,7 @@ module.exports = React.createClass({
         <Button text='signout' onPress={this.onSignoutPress} />
         <Button text='add' onPress={this.onAddPress} />
       </View>
-    </View>
+    </Container>
   },
   onItemPress(){
     this.props.navigator.push({name: 'todoitemdetail'});
@@ -46,12 +47,6 @@ module.exports = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  container: {
-    marginTop: 30,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-  },
   footer: {
     flex: 1,
     flexDirection: 'row',

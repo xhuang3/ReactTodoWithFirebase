@@ -6,7 +6,8 @@ import {
   StyleSheet
 } from 'react-native';
 import Button from '../common/button';
-import app from '../common/firebaseimp';
+import app from '../common/firebaseapp';
+import Container from '../common/container';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -17,7 +18,7 @@ module.exports = React.createClass({
     })
   },
   render(){
-    return <View style={styles.container}>
+    return <Container>
       <Text>
         TODO
       </Text>
@@ -32,7 +33,7 @@ module.exports = React.createClass({
       <Text>{this.state.errorMessage}</Text>
       <Button text='Sign in' onPress={this.signinPressed}/>
       <Button text='Sign up' onPress={this.signupPressed}/>
-    </View>
+    </Container>
   },
   signinPressed(){
     app.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then(
