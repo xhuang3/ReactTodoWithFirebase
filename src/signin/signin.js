@@ -6,7 +6,9 @@ import {
   StyleSheet
 } from 'react-native';
 import Button from '../common/button';
-import app from '../common/firebaseapp';
+import {
+  app,
+} from '../common/firebaseapp';
 import Container from '../common/container';
 
 module.exports = React.createClass({
