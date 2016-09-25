@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TextInput,
   StyleSheet
 } from 'react-native';
 import Button from '../common/button';
@@ -10,6 +9,7 @@ import {
   app,
 } from '../common/firebaseapp';
 import Container from '../common/container';
+import TextInput from '../common/textinput';
 
 module.exports = React.createClass({
   componentWillMount(){
@@ -25,12 +25,11 @@ module.exports = React.createClass({
         TODO
       </Text>
       <TextInput
-        value={this.state.username} 
-        style={styles.textinput}
+        placeholder={'email'}
         onChangeText={(text) => this.setState({username: text})}/>
-      <TextInput value={this.state.password}
+      <TextInput
+        placeholder={'password'}
         secureTextEntry={true}
-        style={styles.textinput}
         onChangeText={(text) => this.setState({password: text})}/>
       <Text>{this.state.errorMessage}</Text>
       <Button text='Sign in' onPress={this.signinPressed}/>
@@ -42,7 +41,7 @@ module.exports = React.createClass({
       (result) => {
         var user = result.user;
         this.props.navigator.immediatelyResetRouteStack([{name: 'todolist'}]);
-      }, 
+      },
       (error) => {
         this.setState({
           errorMessage: error.message,

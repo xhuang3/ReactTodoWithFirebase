@@ -3,12 +3,12 @@ import {
   Navigator,
   StyleSheet
 } from 'react-native';
-import Signin from './signin/signin';
-import Signup from './signin/signup';
-import TodoList from './todo/todolist';
-import TodoItemDetail from './todo/todoitemdetail';
+import Signin from './auth/signin';
+import Signup from './auth/signup';
+import TodoList from './todo/itemlist';
+import TodoItemDetail from './todo/itemdetail';
 
-var ROUTES = {
+const ROUTES = {
   signin: Signin,
   signup: Signup,
   todolist: TodoList,
@@ -21,8 +21,9 @@ module.exports = React.createClass({
     return <Component route={route} navigator={navigator} />;
   },
   render(){
-    return <Navigator 
-             style={styles.container} 
+    //TODO: Check if auth? Then choose route
+    return <Navigator
+             style={styles.container}
              initialRoute={{name: 'signin'}}
              renderScene={this.renderScene}
              configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }} />

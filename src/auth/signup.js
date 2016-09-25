@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput
 } from 'react-native';
 
 import Button from '../common/button';
@@ -11,7 +10,7 @@ import {
   app,
 } from '../common/firebaseapp';
 import Container from '../common/container';
-
+import TextInput from '../common/textinput';
 module.exports = React.createClass({
   componentWillMount(){
     this.setState({
@@ -25,17 +24,16 @@ module.exports = React.createClass({
     return <Container>
       <Text>Sign Up</Text>
       <TextInput
-        value={this.state.email}
-        onChangeText={(text) => this.setState({email: text})}
-        style={styles.input}/>
+        placeholder={'email'}
+        onChangeText={(text) => this.setState({email: text})}/>
       <TextInput
-        value={this.state.password}
-        onChangeText={(text) => this.setState({password: text})}
-        style={styles.input}/>
+        placeholder={'password'}
+        secureTextEntry={true}
+        onChangeText={(text) => this.setState({password: text})}/>
       <TextInput
-        value={this.state.confirmPassword}
-        onChangeText={(text) => this.setState({confirmPassword: text})}
-        style={styles.input}/>
+        placeholder={'confirm password'}
+        secureTextEntry={true}
+        onChangeText={(text) => this.setState({confirmPassword: text})}/>
       <Text>{this.state.errorMessage}</Text>
       <Button text='Sign up' onPress={this.onSignupPress} />
       <Button text='Return to sign in' onPress={this.onSigninPress} />
@@ -48,7 +46,7 @@ module.exports = React.createClass({
       })
       return;
     }
-    
+    // TODO: Show animated progress bar
     app.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
       (result) => {
         var user = result.user;
