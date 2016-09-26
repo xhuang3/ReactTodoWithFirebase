@@ -8,23 +8,38 @@ import {
 import Button from '../common/button';
 import TodoItem from '../common/todoitem';
 import Container from '../common/container';
-import {app} from '../common/firebaseapp';
+import TextInput from '../common/textinput';
+import {app, database} from '../common/firebaseapp';
 
 module.exports = React.createClass({
   componentWillMount(){
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState({
-      dataSource: ds.cloneWithRows(['row 1', 'row2', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3', 'row3']),
+      dataSource: ds.cloneWithRows([]),
     });
+    console.log('will mount!');
+  },
+  componentDidMount(){
+    var dbRef = database.ref().child('todoitems').once('value').then((snap) => {
+      var todoitems = [];
+      snap.forEach((item) => {
+        todoitems.push(item.val().title);
+      });
+
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(todoitems),
+      });
+    })
   },
   render(){
     return <Container>
+      <TextInput />
       <ListView
-        style={[styles.listview, this.border('green')]}
+        style={styles.listview}
         dataSource={this.state.dataSource}
         renderRow={(rowData) => <TodoItem text={rowData} onPress={this.onItemPress}/>}
       />
-      <View style={[styles.footer, this.border('red')]}>
+      <View style={styles.footer}>
         <Button text='signout' onPress={this.onSignoutPress} />
         <Button text='add' onPress={this.onAddPress} />
       </View>
@@ -56,14 +71,10 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
   footer: {
-    flex: 1,
     flexDirection: 'row',
-    paddingBottom: 10,
-    paddingLeft: 10,
     alignSelf: 'stretch'
   },
   listview: {
-    flex: 12,
     alignSelf: 'stretch'
   }
 })

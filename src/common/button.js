@@ -7,8 +7,8 @@ import {
 
 module.exports = React.createClass({
   render(){
-    return <TouchableHighlight 
-             style={styles.button} 
+    return <TouchableHighlight
+             style={styles.button}
              underlayColor='gray'
              onPress={this.props.onPress}>
       <Text style={styles.buttonText}>{this.props.text}</Text>
@@ -18,17 +18,15 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
   button: {
-    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'gray',
     borderRadius: 5,
-    marginTop: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    margin: 5,
+    padding: 5
   },
   buttonText: {
-    fontSize: 20
+    fontSize: 13
   }
 })

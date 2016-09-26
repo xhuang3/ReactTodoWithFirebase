@@ -7,7 +7,7 @@ import {
 
 module.exports = React.createClass({
   render(){
-    return <TouchableHighlight 
+    return <TouchableHighlight
              style={styles.container}
              underlayColor='gray'
              onPress={this.props.onPress}
@@ -20,12 +20,11 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'gray',
     padding: 5,
   },
   text: {
-    fontSize: 30,
+    fontSize: 13,
   }
 });

@@ -10,6 +10,8 @@ module.exports = React.createClass({
       secureTextEntry={this.props.secureTextEntry}
       onChangeText={this.props.onChangeText}
       placeholder={this.props.placeholder}
+      autoCorrect={false}
+      autoCapitalize='none'
       maxLength={200}
       style={styles.input}/>
   }
